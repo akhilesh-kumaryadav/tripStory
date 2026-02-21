@@ -55,6 +55,7 @@ const Home = () => {
   const handleAddTag = (e) => {
     if (e.key === "Enter" && tagInput.trim()) {
       e.preventDefault();
+
       setTags([...tags, tagInput.trim()]);
       setTagInput("");
     }
@@ -77,7 +78,6 @@ const Home = () => {
           <Grid item xs={12} sm={6} md={9}>
             <Posts setCurrentId={setCurrentId} />
           </Grid>
-
           <Grid item xs={12} sm={6} md={3}>
             <AppBar
               position="static"
