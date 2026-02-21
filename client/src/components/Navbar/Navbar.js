@@ -87,7 +87,7 @@ const Navbar = () => {
         <Box
           component="img"
           src={memoriesText}
-          alt="Memories"
+          alt="trip-story"
           sx={{ height: 45 }}
         />
         <Box
