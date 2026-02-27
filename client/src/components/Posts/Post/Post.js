@@ -91,18 +91,15 @@ const Post = ({ post, setCurrentId }) => {
     <Card
       elevation={6}
       sx={{
+        width: 300,
+        height: 420,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
         borderRadius: 3,
-        height: "100%",
-        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <ButtonBase
-        onClick={openPost}
-        sx={{ display: "block", textAlign: "initial" }}
-      >
+      <Box sx={{ position: "relative" }}>
         <CardMedia
           component="img"
           image={
@@ -111,17 +108,17 @@ const Post = ({ post, setCurrentId }) => {
           }
           alt={post.title}
           sx={{
-            height: 0,
-            paddingTop: "56.25%",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            backgroundBlendMode: "darken",
+            height: 180,
+            width: "100%",
+            objectFit: "cover",
           }}
         />
+
         <Box
           sx={{
             position: "absolute",
-            top: 20,
-            left: 20,
+            top: 16,
+            left: 16,
             color: "white",
           }}
         >
@@ -130,12 +127,13 @@ const Post = ({ post, setCurrentId }) => {
             {moment(post.createdAt).fromNow()}
           </Typography>
         </Box>
+
         {isCreator && (
           <Box
             sx={{
               position: "absolute",
-              top: 20,
-              right: 20,
+              top: 8,
+              right: 8,
             }}
           >
             <Button
@@ -150,29 +148,56 @@ const Post = ({ post, setCurrentId }) => {
             </Button>
           </Box>
         )}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            m: 2,
-          }}
-        >
+      </Box>
+
+      <ButtonBase
+        onClick={openPost}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          flexGrow: 1,
+          textAlign: "initial",
+        }}
+      >
+        <Box sx={{ m: 2 }}>
           <Typography variant="body2" color="text.secondary">
             {post.tags.map((tag) => `#${tag} `)}
           </Typography>
         </Box>
-        <Typography variant="h5" gutterBottom sx={{ px: 2 }}>
+
+        <Typography
+          variant="subtitle1"
+          sx={{
+            px: 2,
+            fontWeight: 600,
+            display: "-webkit-box",
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+          }}
+        >
           {post.title}
         </Typography>
 
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            {post.message.split(" ").slice(0, 20).join(" ")}...
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              display: "-webkit-box",
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {post.message}
           </Typography>
         </CardContent>
       </ButtonBase>
       <CardActions
         sx={{
+          mt: "auto",
           px: 2,
           pb: 1,
           display: "flex",

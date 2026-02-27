@@ -45,7 +45,6 @@ const CommentSection = ({ post }) => {
         gap: 3,
       }}
     >
-      {/* Comments List */}
       <Box
         sx={{
           flex: 1,
@@ -70,7 +69,6 @@ const CommentSection = ({ post }) => {
         <div ref={commentsRef} />
       </Box>
 
-      {/* Write Comment */}
       <Box sx={{ width: { xs: "100%", sm: "70%" } }}>
         <Typography gutterBottom variant="h6">
           Write a comment
@@ -80,15 +78,16 @@ const CommentSection = ({ post }) => {
           fullWidth
           multiline
           rows={4}
-          label="Comment"
+          label={user ? "Comment" : "Please sign in to add your comment."}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
+          disabled={!user}
         />
 
         <Button
           sx={{ mt: 2 }}
           fullWidth
-          disabled={!comment.length}
+          disabled={!comment.length || !user}
           variant="contained"
           onClick={handleComment}
         >

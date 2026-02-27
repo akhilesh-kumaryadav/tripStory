@@ -9,12 +9,11 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
-import { deepPurple } from "@mui/material/colors";
+import { deepPurple, green } from "@mui/material/colors";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import memoriesLogo from "../../images/memoriesLogo.png";
-import memoriesText from "../../images/memoriesText.png";
+import tripStoryText from "../../images/tripStoryText.png";
 import { signOut } from "../../actions/auth";
 import { useState } from "react";
 
@@ -86,15 +85,9 @@ const Navbar = () => {
       >
         <Box
           component="img"
-          src={memoriesText}
+          src={tripStoryText}
           alt="trip-story"
           sx={{ height: 45 }}
-        />
-        <Box
-          component="img"
-          src={memoriesLogo}
-          alt="Logo"
-          sx={{ height: 40, ml: 1, mt: 0.5 }}
         />
       </Box>
       <Toolbar
@@ -118,7 +111,7 @@ const Navbar = () => {
               alt={user.name}
               src={user.imageUrl}
               sx={{
-                bgcolor: deepPurple[500],
+                bgcolor: green[600],
                 color: (theme) =>
                   theme.palette.getContrastText(deepPurple[500]),
               }}

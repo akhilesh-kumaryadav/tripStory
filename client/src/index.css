@@ -1,9 +1,14 @@
 
 body {
-    background-color: #f7f8fc;
+    background-color: #f4f6f8;
+    /* background-color: #f8f9fb; */
+    /* background-color: #0f172a; */
 }
 
 * {
-    /* font-family: 'Noto Sans JP' !important; */
-    font-family: 'Heebo', sans-serif !important;
+    font-family: 'Noto Sans JP' !important;
+    /* font-family: 'Heebo', sans-serif !important; */
+    /* font-family: 'Inter', sans-serif; */
+    /* font-family: 'Poppins', sans-serif;*/
+    /* font-family: 'Manrope', sans-serif; */
 }

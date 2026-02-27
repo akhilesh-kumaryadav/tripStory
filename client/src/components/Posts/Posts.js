@@ -28,9 +28,17 @@ const Posts = ({ setCurrentId }) => {
   }
 
   return (
-    <Grid container spacing={3} alignItems="stretch" sx={{ mt: 1 }}>
+    <Grid container spacing={2} sx={{ mt: 1, mb: 15 }}>
       {posts.map((post) => (
-        <Grid key={post._id} item xs={12} sm={6} md={4} lg={3}>
+        <Grid
+          key={post._id}
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
           <Post post={post} setCurrentId={setCurrentId} />
         </Grid>
       ))}

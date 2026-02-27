@@ -10,7 +10,7 @@ const router = express.Router();
 export const getPosts = async (req, res) => {
   try {
     const { page } = req.query;
-    const LIMIT = 8;
+    const LIMIT = 9;
     const startIndex = (Number(page) - 1) * LIMIT;
 
     const total = await PostMessage.countDocuments({});
@@ -233,6 +233,13 @@ export const likePost = async (req, res) => {
 
 export const commentPost = async (req, res) => {
   try {
+    if (!req.userId) {
+      throw new AppError(
+        BAD_REQUEST,
+        "You need to sign in order to comment on the post.",
+      );
+    }
+
     const { id } = req.params;
     const { value } = req.body;
 
