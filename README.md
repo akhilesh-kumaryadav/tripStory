@@ -2,6 +2,6 @@
 
 ## Introduction
 
-The App is called "TripStory" and it is a social media app that allows users to post interesting events that happened in their lives.
+Developed a travel storytelling platform allowing users to create, explore, and interact with rich media posts featuring comments, search, and dynamic content rendering.
 
-LIVE DEPLOYED - https://akhilesh-mermories-app.netlify.app/posts
+LIVE DEPLOYED - https://tripstory-by-akki.club/
