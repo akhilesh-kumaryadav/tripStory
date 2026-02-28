@@ -40,7 +40,7 @@ root.render(
   <StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <GoogleOAuthProvider clientId="OAUTH_CLIENT_ID">
+      <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
         <Provider store={store}>
           <BrowserRouter>
             <App />

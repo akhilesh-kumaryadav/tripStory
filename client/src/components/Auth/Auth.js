@@ -17,7 +17,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import jwtDecode from "jwt-decode";
 
-import { signIn, signUp } from "../../actions/auth";
+import { google, signIn, signUp } from "../../actions/auth";
 import Input from "./Input";
 import { addUser } from "../../reducers/features/userReducer";
 
@@ -56,13 +56,14 @@ const Auth = () => {
 
   const googleSuccess = (credentialResponse) => {
     const decoded = jwtDecode(credentialResponse.credential);
+    const data = {
+      email: decoded.email,
+      firstName: decoded.given_name,
+      lastName: decoded.family_name,
+      sub: decoded.sub,
+    };
 
-    dispatch(
-      addUser({
-        result: decoded,
-        token: credentialResponse.credential,
-      }),
-    );
+    dispatch(google(data, navigate, setSnackBar));
 
     navigate("/posts");
   };
@@ -157,16 +158,16 @@ const Auth = () => {
                 type="password"
               />
             )}
-          </Grid>
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            {isSignup ? "Sign Up" : "Sign In"}
-          </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              {isSignup ? "Sign Up" : "Sign In"}
+            </Button>
+          </Grid>
 
           <GoogleLogin onSuccess={googleSuccess} onError={googleError} />
 

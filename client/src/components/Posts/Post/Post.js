@@ -18,6 +18,7 @@ import {
   Box,
 } from "@mui/material";
 import { likePost, deletePost } from "../../../actions/posts";
+import { DEFAULT_IMAGE } from "../../../utils/constants";
 
 const Post = ({ post, setCurrentId }) => {
   const { user, isLoading } = useSelector((store) => store.user);
@@ -102,10 +103,7 @@ const Post = ({ post, setCurrentId }) => {
       <Box sx={{ position: "relative" }}>
         <CardMedia
           component="img"
-          image={
-            post.selectedFile ||
-            "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
-          }
+          image={post.selectedFile || DEFAULT_IMAGE}
           alt={post.title}
           sx={{
             height: 180,
@@ -122,7 +120,7 @@ const Post = ({ post, setCurrentId }) => {
             color: "white",
           }}
         >
-          <Typography variant="h6">{post.name}</Typography>
+          <Typography variant="h6">User Name: {post.name}</Typography>
           <Typography variant="body2">
             {moment(post.createdAt).fromNow()}
           </Typography>
@@ -162,7 +160,7 @@ const Post = ({ post, setCurrentId }) => {
       >
         <Box sx={{ m: 2 }}>
           <Typography variant="body2" color="text.secondary">
-            {post.tags.map((tag) => `#${tag} `)}
+            Tags: {post.tags.map((tag) => `#${tag} `)}
           </Typography>
         </Box>
 
@@ -177,7 +175,7 @@ const Post = ({ post, setCurrentId }) => {
             overflow: "hidden",
           }}
         >
-          {post.title}
+          Title: {post.title}
         </Typography>
 
         <CardContent>
@@ -191,7 +189,7 @@ const Post = ({ post, setCurrentId }) => {
               overflow: "hidden",
             }}
           >
-            {post.message}
+            Messages: {post.message}
           </Typography>
         </CardContent>
       </ButtonBase>

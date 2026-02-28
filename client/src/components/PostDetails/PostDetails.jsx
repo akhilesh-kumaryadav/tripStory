@@ -12,6 +12,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import CommentSection from "./CommentSection";
 import { useEffect } from "react";
 import { getPost } from "../../actions/posts";
+import { DEFAULT_IMAGE } from "../../utils/constants";
 
 const PostDetails = () => {
   const { id } = useParams();
@@ -55,13 +56,14 @@ const PostDetails = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
+          flexDirection: { xs: "column", md: "row" },
           gap: 3,
         }}
       >
         <Box sx={{ flex: 1 }}>
-          <Typography variant="h3">{post.title}</Typography>
+          <Typography variant="h3">Title: {post.title}</Typography>
           <Typography gutterBottom variant="h6" color="text.secondary">
+            Tags:{" "}
             {post.tags.map((tag) => (
               <Link
                 key={tag}
@@ -73,7 +75,7 @@ const PostDetails = () => {
             ))}
           </Typography>
           <Typography gutterBottom variant="body1">
-            {post.message}
+            Message: {post.message}
           </Typography>
           <Typography variant="h6">
             Created by:
@@ -98,10 +100,7 @@ const PostDetails = () => {
         <Box sx={{ flex: 1 }}>
           <Box
             component="img"
-            src={
-              post.selectedFile ||
-              "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
-            }
+            src={post.selectedFile || DEFAULT_IMAGE}
             alt={post.title}
             sx={{
               width: "100%",
@@ -121,8 +120,11 @@ const PostDetails = () => {
           <Box
             sx={{
               display: "flex",
-              flexDirection: { xs: "column", sm: "row" },
               gap: 3,
+              overflowX: "auto",
+              flexWrap: "nowrap",
+              pb: 2,
+              px: 2,
             }}
           >
             {recommendedPosts.map(
@@ -134,22 +136,30 @@ const PostDetails = () => {
                     cursor: "pointer",
                     p: 2,
                     borderRadius: 2,
+                    minWidth: 250,
+                    flexShrink: 0,
                     "&:hover": { boxShadow: 3 },
                   }}
                 >
-                  <Typography variant="h6">{title}</Typography>
-                  <Typography variant="subtitle2">{name}</Typography>
+                  <Typography variant="h6">Title: {title}</Typography>
+                  <Typography variant="subtitle2">Name: {name}</Typography>
                   <Typography variant="subtitle2">
-                    {message.substring(0, 80)}...
+                    Message: {message.substring(0, 80)}...
                   </Typography>
                   <Typography variant="subtitle1">
-                    Likes: {likes.length}
+                    Likes: {likes?.length ?? 0}
                   </Typography>
 
                   <Box
                     component="img"
-                    src={selectedFile}
-                    sx={{ width: 200, mt: 1, borderRadius: 2 }}
+                    src={selectedFile || DEFAULT_IMAGE}
+                    sx={{
+                      width: "100%",
+                      height: 150,
+                      objectFit: "cover",
+                      mt: 1,
+                      borderRadius: 2,
+                    }}
                   />
                 </Box>
               ),

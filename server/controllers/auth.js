@@ -99,3 +99,40 @@ export const signOut = (req, res) => {
     });
   }
 };
+
+export const google = async (req, res) => {
+  try {
+    const { email, firstName, lastName, sub } = req.body;
+
+    let user = await UserModal.findOne({ email });
+    if (!user) {
+      user = await UserModal.create({
+        email,
+        name: `${firstName} ${lastName}`,
+        provider: "google",
+        googleId: sub,
+      });
+    }
+
+    const token = jwt.sign(
+      { email: user.email, id: user._id },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      },
+    );
+
+    res.cookie("token", token, { expires: new Date(Date.now() + 90000) }).json({
+      result: true,
+      status: 201,
+      message: "Successfully signed in with google auth.",
+      data: user,
+    });
+  } catch (error) {
+    res.json({
+      result: false,
+      status: error.status ?? 400,
+      message: error.message ?? "Something went wrong.",
+    });
+  }
+};

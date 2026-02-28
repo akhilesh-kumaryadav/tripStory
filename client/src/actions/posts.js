@@ -90,7 +90,8 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
 
 export const createPost = (post, navigate) => async (dispatch) => {
   try {
-    dispatch(startLoading);
+    dispatch(startLoading());
+
     const response = await api.createPost(post);
     if (!response.data.result) {
       throw new AppError(response.data.status, response.data.message);
@@ -102,7 +103,7 @@ export const createPost = (post, navigate) => async (dispatch) => {
   } catch (error) {
     console.error(error.message);
   } finally {
-    dispatch(endLoading);
+    dispatch(endLoading());
   }
 };
 

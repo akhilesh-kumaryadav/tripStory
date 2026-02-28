@@ -34,6 +34,23 @@ export const signUp = (formData, navigate, setSnackBar) => async (dispatch) => {
   }
 };
 
+export const google = (formData, navigate, setSnackBar) => async (dispatch) => {
+  try {
+    const response = await api.google(formData);
+
+    if (!response.data.result) {
+      throw new AppError(response.data.status, response.data.message);
+    }
+
+    dispatch(addUser(response.data.data));
+
+    navigate("/");
+  } catch (error) {
+    setSnackBar(error.message);
+    navigate("/auth");
+  }
+};
+
 export const signOut = (setSnackBar) => async (dispatch) => {
   try {
     const response = await api.signOut();

@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.bff57211.css",
-    "main.js": "/static/js/main.82d2e2fe.js",
+    "main.js": "/static/js/main.2459d4be.js",
     "static/media/tripStoryText.png": "/static/media/tripStoryText.d750938326e23cd28d2b.png",
     "index.html": "/index.html",
     "main.bff57211.css.map": "/static/css/main.bff57211.css.map",
-    "main.82d2e2fe.js.map": "/static/js/main.82d2e2fe.js.map"
+    "main.2459d4be.js.map": "/static/js/main.2459d4be.js.map"
   },
   "entrypoints": [
     "static/css/main.bff57211.css",
-    "static/js/main.82d2e2fe.js"
+    "static/js/main.2459d4be.js"
   ]
 }
